@@ -22,7 +22,7 @@ func checkGoFile(
 	tags []string,
 ) error {
 	filename := pass.Fset.Position(f.Pos()).Filename
-	if !r.Match([]byte(filename)) {
+	if !r.MatchString(filename) {
 		return nil
 	}
 
@@ -44,7 +44,7 @@ func checkOtherFile(
 		return nil
 	}
 
-	if !r.Match([]byte(filename)) {
+	if !r.MatchString(filename) {
 		return nil
 	}
 
