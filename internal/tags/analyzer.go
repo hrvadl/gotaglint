@@ -42,6 +42,10 @@ func run(pass *analysis.Pass) (any, error) {
 		return nil, errors.Join(ErrInvalidPattern, err)
 	}
 
+	if len(tagsJoined) == 0 {
+		return nil, nil
+	}
+
 	tags := strings.Split(tagsJoined, ",")
 	if len(tags) == 0 {
 		return nil, nil
