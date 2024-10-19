@@ -33,7 +33,7 @@ func NewAnalyzer() *analysis.Analyzer {
 
 func run(pass *analysis.Pass) (any, error) {
 	if match == nil {
-		return nil, ErrMatchPatterIsNotDefined
+		return nil, ErrMatchPatternIsNotDefined
 	}
 
 	r, err := regexp.Compile(*match)
