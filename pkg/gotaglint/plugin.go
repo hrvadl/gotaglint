@@ -1,4 +1,4 @@
-package plugin
+package gotaglint
 
 import (
 	"golang.org/x/tools/go/analysis"
