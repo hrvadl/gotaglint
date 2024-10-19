@@ -12,13 +12,18 @@ import (
 
 var (
 	fs         flag.FlagSet
-	match      *string
-	tagsJoined *string
+	match      string
+	tagsJoined string
 )
 
 func init() {
-	match = fs.String("match", "", "regex which will determine matched files to check")
-	tagsJoined = fs.String("buildtags", "", "tags mandatory for the matched file separated by ','")
+	fs.StringVar(&match, "match", "", "regex which will determine matched files to check")
+	fs.StringVar(
+		&tagsJoined,
+		"buildtags",
+		"",
+		"tags mandatory for the matched file separated by ','",
+	)
 }
 
 func NewAnalyzer() *analysis.Analyzer {
@@ -32,20 +37,12 @@ func NewAnalyzer() *analysis.Analyzer {
 }
 
 func run(pass *analysis.Pass) (any, error) {
-	if match == nil {
-		return nil, ErrMatchPatternIsNotDefined
-	}
-
-	r, err := regexp.Compile(*match)
+	r, err := regexp.Compile(match)
 	if err != nil {
 		return nil, errors.Join(ErrInvalidPattern, err)
 	}
 
-	if tagsJoined == nil {
-		return nil, nil
-	}
-
-	tags := strings.Split(*tagsJoined, ",")
+	tags := strings.Split(tagsJoined, ",")
 	if len(tags) == 0 {
 		return nil, nil
 	}
