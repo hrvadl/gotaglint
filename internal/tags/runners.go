@@ -83,6 +83,6 @@ func report(pass *analysis.Pass, mt MissingTag) error {
 	if err := printer.Fprint(&buf, pass.Fset, mt.Token); err != nil {
 		return errors.Join(ErrFailedToGenerateReport, err)
 	}
-	pass.Reportf(mt.Pos, "matching build tag is not found")
+	pass.Reportf(mt.Pos, "required build tag is not found")
 	return nil
 }

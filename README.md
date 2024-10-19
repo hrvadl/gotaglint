@@ -68,7 +68,7 @@ gotaglint --match=".*_test.go" --buildtags="integration,\!integration" ./...
 `gotaglint` will produce the following output:
 
 ```sh
-/Users/vadym.hrashchenko/go/gotaglint/examples/example_test.go:3:9: matching build tag is not found
+/Users/vadym.hrashchenko/go/gotaglint/examples/example_test.go:3:9: required build tag is not found
 ```
 
 ## Rules
