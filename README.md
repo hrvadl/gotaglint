@@ -1,11 +1,11 @@
 # gotaglint
 
-gotaglint is a program to check whether you have have defined all required build tags.
+`gotaglint` is a program to check whether you have have defined all required build tags.
 
 ## Install
 
 ```sh
-go install github.com/hrvadl/gotaglint/cmd/gotaglint
+go install github.com/hrvadl/gotaglint/cmd/gotaglint@latest
 ```
 
 ## Usage
