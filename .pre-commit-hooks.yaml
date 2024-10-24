@@ -3,4 +3,4 @@
   description: This hook checks for missing build tags
   entry: gotaglint
   language: golang
-  types: [go]
+  types: [file, golang]
