@@ -57,7 +57,7 @@ func checkOtherFile(
 		return nil
 	}
 
-	missing := MissingTag{Pos: node.Name.NamePos, Token: node.Name}
+	missing := MissingTag{Pos: node.Name.NamePos, Token: node.Name, RequiredTags: tags}
 	return report(pass, missing)
 }
 
@@ -74,8 +74,9 @@ func containsBuildTag(f *ast.File, tags []string) bool {
 }
 
 type MissingTag struct {
-	Pos   token.Pos
-	Token ast.Node
+	Pos          token.Pos
+	Token        ast.Node
+	RequiredTags []string
 }
 
 func report(pass *analysis.Pass, mt MissingTag) error {
@@ -83,6 +84,6 @@ func report(pass *analysis.Pass, mt MissingTag) error {
 	if err := printer.Fprint(&buf, pass.Fset, mt.Token); err != nil {
 		return errors.Join(ErrFailedToGenerateReport, err)
 	}
-	pass.Reportf(mt.Pos, "required build tag is not found")
+	pass.Reportf(mt.Pos, "required build tag (%s) is not found", strings.Join(mt.RequiredTags, " "))
 	return nil
 }
