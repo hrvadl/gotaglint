@@ -1,0 +1,5 @@
+- id: missing-build-tags
+  name: Check for missing build tags
+  description: This hook checks for missing build tags
+  entry: gotaglint
+  language: golang
