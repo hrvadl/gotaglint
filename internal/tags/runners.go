@@ -30,7 +30,7 @@ func checkGoFile(
 		return nil
 	}
 
-	missing := MissingTag{Pos: f.Name.NamePos, Token: f.Name}
+	missing := MissingTag{Pos: f.Name.NamePos, Token: f.Name, RequiredTags: tags}
 	return report(pass, missing)
 }
 
